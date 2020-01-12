@@ -1,24 +1,19 @@
-# learn-vue
+# 学习 Vue
 
-## Project setup
-```
-yarn install
-```
+### 一边学习 Vue 一边进行整理
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+各个版本更新的详细细节见 [更新日志](./CHANGELOG.md)
 
-### Compiles and minifies for production
-```
-yarn build
-```
+---
 
-### Lints and fixes files
-```
-yarn lint
-```
+**主要包括的部分：**
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ 1. 安装
+ 2. 介绍
+     <ul>
+         <li>构成</li>
+         <li>声明式渲染</li>
+         <li>条件与循环</li>
+         <li>生命周期</li>
+         <li>原始 html</li>
+     </ul>
