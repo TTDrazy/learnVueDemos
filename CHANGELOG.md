@@ -1,6 +1,13 @@
 # 更新日志
 
-## 1.0.0(2020.01.12)
+## 1.1(2020.02.10)
+
+---
+
+1. 增添了自动导入的 element-ui
+2. 自己实现了 element 的布局
+
+## 1.0(2020.01.12)
 
 ---
 
@@ -80,9 +87,6 @@
            <code> &lt;p&gt;{{ data }}&lt;/p&gt;
 &lt;input v-model=&quot;data&quot; /&gt;</code>
            <br>
-           也可以简写为：
-           <br>
-           <code> @click="changeRender </code>
            </li>
        </ul>
     </li>

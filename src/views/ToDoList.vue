@@ -3,12 +3,12 @@
         <input type="text" placeholder="请输入待做任务" v-model="todo" />
         <button @click="addClick">添加</button>
         <list :todoList="todoList"></list>
-        <!-- <hr/>
+        <hr />
         <h3>已完成</h3>
         <list :todoList="finishedTodoList"></list>
-        <hr/>
+        <hr />
         <h3>未完成</h3>
-        <list :todoList="unFinishedTodoList"></list> -->
+        <list :todoList="unFinishedTodoList"></list>
     </div>
 </template>
 <script>
@@ -28,13 +28,23 @@ export default {
                     isFinished: false
                 }
             ],
-            // finishedTodoList:[
-
-            // ],
-            // unFinishedTodoList:[
-
-            // ]
+            finishedTodoList: [],
+            unFinishedTodoList: []
         };
+    },
+    watch: {
+        todoList:function() {
+            console.log(this.finishedTodoList, this.unFinishedTodoList);
+            this.todoList.map(item => {
+                if (item.isFinished) {
+                    this.finishedTodoList.push(item);
+                } else {
+                    this.unFinishedTodoList.push(item);
+                }
+            });
+            console.log(this.finishedTodoList, this.unFinishedTodoList);
+        },
+        deep:true
     },
     methods: {
         addClick() {
@@ -48,19 +58,18 @@ export default {
             this.todo = "";
         }
     },
-    components:{
-      "list":List
+    components: {
+        list: List
     },
-    // mounted() {
-    //   console.log(this.finishedTodoList,this.unFinishedTodoList)
-    //   this.todoList.map((item)=>{
-    //     if(item.isFinished){
-    //       this.finishedTodoList.push(item);
-    //     }else{
-    //       this.unFinishedTodoList.push(item);
-    //     }
-    //   })
-    // }
+    mounted() {
+        this.todoList.map(item => {
+            if (item.isFinished) {
+                this.finishedTodoList.push(item);
+            } else {
+                this.unFinishedTodoList.push(item);
+            }
+        });
+    }
 };
 </script>
 <style scoped lang="less">

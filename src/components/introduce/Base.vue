@@ -19,8 +19,10 @@
         <p>{{ data }}</p>
         <input v-model="data" />
         <hr />
-        <div>{{htmlPage}}</div>
-        <div v-html="htmlPage">v-html:{{htmlPage}}</div>
+        <div>{{ htmlPage }}</div>
+        <div v-html="htmlPage">v-html:{{ htmlPage }}</div>
+        <hr />
+        <div>{{message+data}}</div>
     </div>
 </template>
 
@@ -43,8 +45,8 @@ export default {
                 }
             ],
             data: "我是 v-model 绑定的数据",
-            htmlPage:`<div>我是 html </div>`,
-            isDisabled:true
+            htmlPage: `<div>我是 html </div>`,
+            isDisabled: true
         };
     },
     methods: {
@@ -60,7 +62,7 @@ export default {
     updated() {
         alert("我是 updated 生命周期！");
     },
-    destroyed(){
+    destroyed() {
         alert("我是 destroyed 生命周期！");
     }
 };
