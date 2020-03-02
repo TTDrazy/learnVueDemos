@@ -5,7 +5,14 @@
         </div>
         <div :class="$style.middle">
             <my-Silder></my-Silder>
-            <my-Content></my-Content>
+            <!-- 最好还是加上 ref ，虽然不影响类似于 this.props.children 的使用-->
+            <my-Content ref="myContent">
+                <button @click="goToHome">go to Home</button>
+                <div>
+                    现在 store 中的 count 为：{{ this.$store.state.count }}
+                </div>
+                <button @click="decrement">count - 1</button>
+            </my-Content>
         </div>
         <div :class="$style.bottom">
             <my-Footer></my-Footer>
@@ -23,8 +30,16 @@ export default {
     components: {
         myHeader: Header,
         mySilder: Silder,
-        myContent:Content,
+        myContent: Content,
         myFooter: Footer
+    },
+    methods:{
+        goToHome(){
+            this.$router.push('/');
+        },
+        decrement(){
+            this.$store.commit('decrement');
+        }
     }
 };
 </script>
@@ -38,7 +53,7 @@ export default {
         height: 50px;
         background: pink;
     }
-    .middle{
+    .middle {
         display: flex;
     }
     .bottom {

@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <button @click="goToMain">go to Main</button>
         <hr />
         <h3>{{ message }}</h3>
         <hr />
@@ -22,7 +23,14 @@
         <div>{{ htmlPage }}</div>
         <div v-html="htmlPage">v-html:{{ htmlPage }}</div>
         <hr />
-        <div>{{message+data}}</div>
+        <div>{{ message + data }}</div>
+        <hr />
+        <h3>VueX</h3>
+        <div>现在 store 中的 count 为：{{ this.$store.state.count }}</div>
+        <div>现在 count + 2 后为：{{ doubleIncrement }}</div>
+        <div>现在 count - 2 后为：{{ doubleDecrement }}</div>
+        <button @click="increment">count + 1</button>
+        <button @click="actionIncrement">count</button>
     </div>
 </template>
 
@@ -50,21 +58,40 @@ export default {
         };
     },
     methods: {
+        goToMain() {
+            this.$router.push("/main");
+        },
         //改变渲染
         changeRender() {
             this.isRender = !this.isRender;
+        },
+        //给 vueX 的 count + 1
+        increment() {
+            this.$store.commit("increment");
+        },
+
+        actionIncrement() {
+            this.$store.dispatch("incrementAsync");
         }
     },
-    // 生命周期
-    created() {
-        alert("我是 created 生命周期！");
-    },
-    updated() {
-        alert("我是 updated 生命周期！");
-    },
-    destroyed() {
-        alert("我是 destroyed 生命周期！");
+    computed: {
+        doubleIncrement() {
+            return this.$store.getters.doubleIncrement;
+        },
+        doubleDecrement() {
+            return this.$store.getters.doubleDecrement;
+        }
     }
+    // 生命周期
+    // created() {
+    //     alert("我是 created 生命周期！");
+    // },
+    // updated() {
+    //     alert("我是 updated 生命周期！");
+    // },
+    // destroyed() {
+    //     alert("我是 destroyed 生命周期！");
+    // }
 };
 </script>
 
