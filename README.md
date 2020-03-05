@@ -25,3 +25,11 @@
     - mutations
     - actions
     - modules
+4.  Vue Router
+    - 介绍
+    - 路由跳转
+    - 路径参数
+    - 路由重定向
+    - 路径懒加载
+    - 路由守卫
+    - $route 和 $router 的区别

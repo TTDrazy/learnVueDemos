@@ -1,5 +1,49 @@
 # 更新日志
 
+## 1.3(2020.03.05)
+
+---
+
+1. Vue Router 介绍  
+    - 用 Vue.js + Vue Router 可以创建**单页应用**
+    - 将组件 (components) **映射**到路由 (routes)，然后告诉 Vue Router 在哪里渲染它们即可
+2. Vue Router 的 路由跳转
+    - 可以用`<router-link>`进行跳转
+    - 可以用 `this.$router.push()`方法进行跳转
+3. Vue Router 的 路径参数
+    - 可以用 `query` 传参，路由上的表现为 `/xx`，最后的路径为 `xx/?xx=xx&xx=xx`
+    - 可以用 `param` 传参，路由上的表现为 `xx/:xx` ，最后的路径为 `xx/xx`
+    - query 与 param 两种传参方式功能都是传参，但是方式不一样，最大区别是传的参数在路由中显示的不同，以及能否刷新后仍然传参
+4. Vue Router 的 路由重定向
+    - 重定向就是利用 `redirect` 在参数中设置的**默认页面**
+    - 应用方式例如 ： `{ path: '/a', redirect: { name: 'foo' }}`
+5. Vue Router 的 路径懒加载
+    - 路径懒加载就是指在**用到这个页面的时候再去加载**相关资源
+    - 应用方式例如 ： `const xx = () => import('./xx.vue')`，再用 path 和 component 去设置即可
+5. Vue Router 的 路由守卫
+    - 路由守卫就是类似 Vue Router 的生命周期，一般与 Vue 的生命周期结合使用
+        - 全局前置守卫 `router.beforeEach((to, from, next) = {...})`
+            - **确保要调用 next 方法，否则钩子就不会被 resolved**
+        - 全局解析守卫 `router.afterEach((to, from) = {...})`
+        - 路由独享的守卫,以在路由配置上直接定义 `beforeEnter: (to, from, next) => {}`
+        - 组件内的守卫 `router.beforeRouteEnter((to, from, next) = {...})` 和 `router.beforeRouteUpdate ((to, from, next) = {...})` 以及 `router.beforeRouteLeave ((to, from, next) = {...})`
+    - 完整的导航解析流程
+        - 导航被触发
+        - 在失活的组件里调用离开守卫
+        - 调用全局的 beforeEach 守卫
+        - 在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)
+        - 在路由配置里调用 beforeEnter
+        - 解析异步路由组件
+        - 在被激活的组件里调用 beforeRouteEnter
+        - 调用全局的 beforeResolve 守卫 (2.5+)
+        - 导航被确认
+        - 调用全局的 afterEach 钩子
+        - 触发 DOM 更新
+        - 用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数
+6. $route 和 $router 的区别
+    - $route 是当前 router 跳转对象，里面可以获取 name 、 path 、query 、 params 等
+    - $router 是 Vue Router 的实例，想要导航到不同的 URL，需要使用 $router.push() 的方法
+
 ## 1.2(2020.03.02)
 
 ---
